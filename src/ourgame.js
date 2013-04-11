@@ -1,12 +1,18 @@
 function init() {
 	var guy = new Guy();
-	guy.moveRight();	
 	guy.render();
+	$(document).keydown(function(event){
+		if (event.which == 39){
+			guy.move(1, 0);	
+			guy.render();
+		}		
+	});
 }
 
 Guy = function() {
 	this.x = 0;
 	this.y = 0;
+	this.speed = 10;
 
 	this.sprite = document.createElement("img");
 	this.sprite.style.position = "absolute";
@@ -21,6 +27,8 @@ Guy.prototype.render = function() {
 	container.appendChild(this.sprite);
 }
 
-Guy.prototype.moveRight = function() {
-	this.x += 100;
+Guy.prototype.move = function(x, y) {
+	this.x += x * this.speed;
+	this.y += y * this.speed;
 }
+
