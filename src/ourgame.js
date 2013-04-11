@@ -16,6 +16,12 @@ Game = function() {
 		if (event.which == 40){
 			self.downDown = true;
 		}	
+		if (event.which == 37){
+			self.leftDown = true;
+		}
+		if (event.which == 38){
+			self.upDown = true;
+		}
 	});
 	$(document).keyup(function(event){
 		if (event.which == 39){
@@ -24,12 +30,19 @@ Game = function() {
 		if (event.which == 40){
 			self.downDown = false;
 		}	
+		if (event.which == 37){
+			self.leftDown = false;
+		}
+		if (event.which == 38){
+			self.upDown = false;
+		}
 	});
 }
 
 Game.prototype.tick = function() {
 	var self = this;
 	this.guy.move(this.rightDown? 1 : 0, this.downDown? 1 : 0);
+	this.guy.move(this.leftDown? -1 : 0, this.upDown? -1 : 0);
 	this.guy.render();
 	setTimeout(function() { self.tick(); }, 100);
 }
