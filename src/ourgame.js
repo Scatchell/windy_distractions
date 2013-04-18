@@ -32,6 +32,9 @@ Game.prototype.setKeyEvents = function() {
 		if (event.which == 38){
 			self.upDown = true;
 		}
+		if (event.which == 76){
+			self.guy.shootBullet();
+		}
 	});
 
 	$(document).keyup(function(event){
@@ -66,17 +69,16 @@ Guy = function(container) {
 	this.sprite = document.createElement("img");
 	this.sprite.style.position = "absolute";
 	this.sprite.src = "assets/sprites/guy.png";
-        this.sprite.height=50;
-        this.sprite.width=25;
+        this.sprite.height = 50;
+        this.sprite.width = 25;
 	
 	this.container = container;
 }
 
 Guy.prototype.render = function() {
-	var container = document.getElementById("container");
 	this.sprite.style.left = this.x + "px";
 	this.sprite.style.top = this.y + "px";
-	container.appendChild(this.sprite);
+	$("#container").append(this.sprite);
 }
 
 Guy.prototype.move = function(x, y) {
@@ -90,6 +92,29 @@ Guy.prototype.move = function(x, y) {
 	}
 
 	this.container.restrict(this);
+}
+
+Guy.prototype.shootBullet = function() {
+	var bullet = new Bullet(this.x, this.y);
+	bullet.render();
+}
+
+Bullet = function(x, y){
+	this.x = x;
+	this.y = y;
+
+	this.sprite = document.createElement("img");
+	this.sprite.style.position = "absolute";
+	this.sprite.src = "assets/sprites/bullet.png";
+        this.sprite.height = 10;
+        this.sprite.width = 5;
+	
+}
+
+Bullet.prototype.render = function() {
+	this.sprite.style.left = this.x + "px";
+	this.sprite.style.top = this.y + "px";
+	$("#container").append(this.sprite);
 }
 
 Container = function(min_x, min_y, max_x, max_y) {
