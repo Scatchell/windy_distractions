@@ -28,6 +28,6 @@ Guy.prototype.move = function(x, y) {
 }
 
 Guy.prototype.shootBullet = function() {
-	var bullet = new Bullet(this.x, this.y);
+	var bullet = new Bullet(this.container, this.x, this.y);
 	game.register(bullet);
 }

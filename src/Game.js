@@ -64,5 +64,11 @@ Game.prototype.tick = function() {
 		bullet.render();
 	});
 
+
 	setTimeout(function() { self.tick(); }, 30);
+}
+
+Game.prototype.deregister = function(bullet) {
+	this.bullets.splice(this.bullets.indexOf(bullet), 1);
+	bullet.sprite.remove();
 }

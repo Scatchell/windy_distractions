@@ -1,4 +1,5 @@
-Bullet = function(x, y){
+Bullet = function(container, x, y){
+	this.container = container;
 	this.x = x;
 	this.y = y;
 	
@@ -7,11 +8,11 @@ Bullet = function(x, y){
 	this.sprite.src = "assets/sprites/bullet.png";
         this.sprite.height = 10;
         this.sprite.width = 5;
-	
 }
 
 Bullet.prototype = new Renderable();
 
 Bullet.prototype.move = function() {
 	this.y -= 10;
+	this.container.release(this);
 }
