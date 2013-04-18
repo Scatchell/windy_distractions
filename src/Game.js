@@ -9,6 +9,7 @@ Game = function() {
 
 	this.setKeyEvents();
 	this.guy.render();
+	this.bullets = [];
 }
 
 Game.prototype.setKeyEvents = function() {
@@ -48,10 +49,20 @@ Game.prototype.setKeyEvents = function() {
 	});
 }
 
+Game.prototype.register = function(bullet) {
+	this.bullets.push(bullet);
+}
+
 Game.prototype.tick = function() {
 	var self = this;
 	this.guy.move(this.rightDown? 1 : 0, this.downDown? 1 : 0);
 	this.guy.move(this.leftDown? -1 : 0, this.upDown? -1 : 0);
 	this.guy.render();
+
+	this.bullets.forEach(function(bullet) {
+		bullet.move();
+		bullet.render();
+	});
+
 	setTimeout(function() { self.tick(); }, 30);
 }

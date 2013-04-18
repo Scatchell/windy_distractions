@@ -1,4 +1,4 @@
 function init() {
-	var theGame = new Game();
-	theGame.tick();
+	game = new Game();
+	game.tick();
 }

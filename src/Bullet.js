@@ -11,3 +11,7 @@ Bullet = function(x, y){
 }
 
 Bullet.prototype = new Renderable();
+
+Bullet.prototype.move = function() {
+	this.y -= 10;
+}

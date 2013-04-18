@@ -29,5 +29,5 @@ Guy.prototype.move = function(x, y) {
 
 Guy.prototype.shootBullet = function() {
 	var bullet = new Bullet(this.x, this.y);
-	bullet.render();
+	game.register(bullet);
 }
