@@ -1,78 +1,86 @@
 Game = function() {
-	var container = new Container(0,0,window.innerWidth,window.innerHeight);
+  var container = new Container(0,0,window.innerWidth,window.innerHeight);
 
-	this.guy = new Guy(container);
-	this.upDown = false;
-	this.downDown = false;
-	this.leftDown = false;
-	this.rightDown = false;
+  this.guy = new Guy(container);
+  this.upDown = false;
+  this.downDown = false;
+  this.leftDown = false;
+  this.rightDown = false;
 
-	this.setKeyEvents();
-	this.guy.render();
-	this.bullets = [];
+  this.setKeyEvents();
+  this.guy.render();
+  this.game_objects = [];
 
-	this.death_machine_user = new DeathMachineUser(window.innerWidth/2, 100, container);
+  for(var i=0; i<20; i++) {
+    this.register(new DeathMachineUser(Math.floor(Math.random() * window.innerWidth),
+                                        Math.floor(Math.random() * window.innerHeight/2), container));
+  }
 }
 
 Game.prototype.setKeyEvents = function() {
-	var self = this;
+  var self = this;
 
-	$(document).keydown(function(event){
-		if (event.which == 39){
-			self.rightDown = true;
-		}
-		if (event.which == 40){
-			self.downDown = true;
-		}	
-		if (event.which == 37){
-			self.leftDown = true;
-		}
-		if (event.which == 38){
-			self.upDown = true;
-		}
-		if (event.which == 76){
-			self.guy.shootBullet();
-		}
-	});
+  $(document).keydown(function(event){
+      if (event.which == 39){
+      self.rightDown = true;
+      }
+      if (event.which == 40){
+      self.downDown = true;
+      }	
+      if (event.which == 37){
+      self.leftDown = true;
+      }
+      if (event.which == 38){
+      self.upDown = true;
+      }
+      if (event.which == 76){
+      self.guy.shootBullet();
+      }
+      });
 
-	$(document).keyup(function(event){
-		if (event.which == 39){
-			self.rightDown = false;
-		}
-		if (event.which == 40){
-			self.downDown = false;
-		}	
-		if (event.which == 37){
-			self.leftDown = false;
-		}
-		if (event.which == 38){
-			self.upDown = false;
-		}
-	});
+  $(document).keyup(function(event){
+      if (event.which == 39){
+      self.rightDown = false;
+      }
+      if (event.which == 40){
+      self.downDown = false;
+      }	
+      if (event.which == 37){
+      self.leftDown = false;
+      }
+      if (event.which == 38){
+      self.upDown = false;
+      }
+      });
 }
 
 Game.prototype.register = function(bullet) {
-	this.bullets.push(bullet);
+  this.game_objects.push(bullet);
 }
 
 Game.prototype.tick = function() {
-	var self = this;
-	this.guy.move(this.rightDown? 1 : 0, this.downDown? 1 : 0);
-	this.guy.move(this.leftDown? -1 : 0, this.upDown? -1 : 0);
-	this.guy.render();
+  var self = this;
+  this.guy.move(this.rightDown? 1 : 0, this.downDown? 1 : 0);
+  this.guy.move(this.leftDown? -1 : 0, this.upDown? -1 : 0);
+  this.guy.render();
 
-	this.death_machine_user.render();
+  this.game_objects.forEach(function(game_object) {
+      game_object.render();
+      game_object.move();
 
-	this.bullets.forEach(function(bullet) {
-		bullet.render();
-		bullet.move();
-	});
+      self.game_objects.forEach(function(other) {
+        if (game_object != other && game_object.collided(other)) {
+          self.deregister(other);
+          self.deregister(game_object);
+        }
+      });
+  });
 
 
-	setTimeout(function() { self.tick(); }, 30);
+  setTimeout(function() { self.tick(); }, 30);
 }
 
-Game.prototype.deregister = function(bullet) {
-	bullet.remove();
-	this.bullets.splice(this.bullets.indexOf(bullet), 1);
+Game.prototype.deregister = function(game_object) {
+  game_object.remove();
+  this.game_objects.splice(this.game_objects.indexOf(game_object), 1);
 }
