@@ -13,7 +13,7 @@ Container.prototype.restrict = function(guy) {
 }
 
 Container.prototype.release = function(bullet) {
-	if (bullet.x > this.max_x || bullet.x < this.min_x || bullet.y > this.max_y || bullet.y < this.min_y) {
+	if (bullet.y < this.min_y) {
 		game.deregister(bullet);
 	}
 }

@@ -60,8 +60,8 @@ Game.prototype.tick = function() {
 	this.guy.render();
 
 	this.bullets.forEach(function(bullet) {
-		bullet.move();
 		bullet.render();
+		bullet.move();
 	});
 
 
@@ -69,6 +69,6 @@ Game.prototype.tick = function() {
 }
 
 Game.prototype.deregister = function(bullet) {
+	bullet.remove();
 	this.bullets.splice(this.bullets.indexOf(bullet), 1);
-	bullet.sprite.remove();
 }
