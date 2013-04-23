@@ -10,6 +10,8 @@ Game = function() {
 	this.setKeyEvents();
 	this.guy.render();
 	this.bullets = [];
+
+	this.death_machine_user = new DeathMachineUser(window.innerWidth/2, 100, container);
 }
 
 Game.prototype.setKeyEvents = function() {
@@ -58,6 +60,8 @@ Game.prototype.tick = function() {
 	this.guy.move(this.rightDown? 1 : 0, this.downDown? 1 : 0);
 	this.guy.move(this.leftDown? -1 : 0, this.upDown? -1 : 0);
 	this.guy.render();
+
+	this.death_machine_user.render();
 
 	this.bullets.forEach(function(bullet) {
 		bullet.render();

@@ -1,7 +1,7 @@
-Bullet = function(container, x, y){
-	this.container = container;
-	this.x = x;
+Bullet = function(container, x, y) {
 	this.y = y;
+	this.x = x;
+	this.container = container;
 	
 	this.sprite = document.createElement("img");
 	this.sprite.style.position = "absolute";
