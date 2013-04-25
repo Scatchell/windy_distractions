@@ -2,24 +2,24 @@ Renderable = function () {
 }
 
 Renderable.prototype.top = function() {
-  return this.y;
+  return this.location.y;
 }
 
 Renderable.prototype.bottom = function() {
-  return this.y + this.sprite.height;
+  return this.location.y + this.sprite.height;
 }
 
 Renderable.prototype.left = function() {
-  return this.x;
+  return this.location.x;
 }
 
 Renderable.prototype.right = function() {
-  return this.x + this.sprite.width;
+  return this.location.x + this.sprite.width;
 }
 
 Renderable.prototype.render = function() {
-  this.sprite.style.left = this.x + "px";
-  this.sprite.style.top = this.y + "px";
+  this.sprite.style.left = this.location.x + "px";
+  this.sprite.style.top = this.location.y + "px";
   $("#container").append(this.sprite);
 }
 

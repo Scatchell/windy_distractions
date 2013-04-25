@@ -1,6 +1,5 @@
-Guy = function(container) {
-	this.x = 0;
-	this.y = 0;
+Guy = function(location, container) {
+	this.location = location;
 	this.speed = 10;
 
 	this.sprite = document.createElement("img");
@@ -15,13 +14,13 @@ Guy = function(container) {
 Guy.prototype = new Renderable();
 
 Guy.prototype.move = function(x, y) {
-	this.x += x * this.speed;
-	this.y += y * this.speed;
+	this.location.x += x * this.speed;
+	this.location.y += y * this.speed;
 
 	this.container.restrict(this);
 }
 
 Guy.prototype.shootBullet = function() {
-	var bullet = new Bullet(this.container, this.x, this.y);
+	var bullet = new Bullet(this.location, this.container);
 	game.register(bullet);
 }

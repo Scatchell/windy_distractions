@@ -1,7 +1,7 @@
 Game = function() {
   var container = new Container(0,0,window.innerWidth,window.innerHeight);
 
-  this.guy = new Guy(container);
+  this.guy = new Guy(new Point(window.innerWidth/2, window.innerHeight), container);
   this.upDown = false;
   this.downDown = false;
   this.leftDown = false;
@@ -12,8 +12,8 @@ Game = function() {
   this.game_objects = [];
 
   for(var i=0; i<1; i++) {
-    this.register(new DeathMachineUser(Math.floor(Math.random() * window.innerWidth),
-                                        Math.floor(Math.random() * window.innerHeight/2), container));
+    this.register(new DeathMachineUser(new Point(Math.floor(Math.random() * window.innerWidth),
+                                        Math.floor(Math.random() * window.innerHeight/2)), container));
   }
 }
 
@@ -66,7 +66,6 @@ Game.prototype.tick = function() {
 
   this.game_objects.forEach(function(game_object) {
       game_object.render();
-      //  (.Y.) 
       game_object.move();
 
       self.game_objects.forEach(function(other) {

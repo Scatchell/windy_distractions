@@ -6,14 +6,14 @@ Container = function(min_x, min_y, max_x, max_y) {
 }
 
 Container.prototype.restrict = function(guy) {
-        guy.x = Math.max(guy.x, this.min_x);
-        guy.y = Math.max(guy.y, this.min_y);
-        guy.x = Math.min(guy.x, this.max_x - guy.sprite.width);
-        guy.y = Math.min(guy.y, this.max_y - guy.sprite.height);
+        guy.location.x = Math.max(guy.location.x, this.min_x);
+        guy.location.y = Math.max(guy.location.y, this.min_y);
+        guy.location.x = Math.min(guy.location.x, this.max_x - guy.sprite.width);
+        guy.location.y = Math.min(guy.location.y, this.max_y - guy.sprite.height);
 }
 
 Container.prototype.release = function(bullet) {
-	if (bullet.y < this.min_y) {
+	if (bullet.location.y < this.min_y) {
 		game.deregister(bullet);
 	}
 }

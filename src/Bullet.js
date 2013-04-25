@@ -1,6 +1,5 @@
-Bullet = function(container, x, y) {
-	this.y = y;
-	this.x = x;
+Bullet = function(location, container) {
+	this.location = jQuery.extend({}, location);
 	this.container = container;
 	
 	this.sprite = document.createElement("img");
@@ -13,6 +12,6 @@ Bullet = function(container, x, y) {
 Bullet.prototype = new Renderable();
 
 Bullet.prototype.move = function() {
-	this.y -= 10;
+	this.location.y -= 10;
 	this.container.release(this);
 }
