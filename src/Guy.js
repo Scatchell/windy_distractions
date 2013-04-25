@@ -18,12 +18,6 @@ Guy.prototype.move = function(x, y) {
 	this.x += x * this.speed;
 	this.y += y * this.speed;
 
-	if (this.x < 0){
-		this.x = 0;
-	} else if (this.y < 0) {
-		this.y = 0;
-	}
-
 	this.container.restrict(this);
 }
 
