@@ -11,7 +11,7 @@ Game = function() {
   this.guy.render();
   this.game_objects = [];
 
-  for(var i=0; i<20; i++) {
+  for(var i=0; i<1; i++) {
     this.register(new DeathMachineUser(Math.floor(Math.random() * window.innerWidth),
                                         Math.floor(Math.random() * window.innerHeight/2), container));
   }
@@ -66,6 +66,7 @@ Game.prototype.tick = function() {
 
   this.game_objects.forEach(function(game_object) {
       game_object.render();
+      //  (.Y.) 
       game_object.move();
 
       self.game_objects.forEach(function(other) {
@@ -75,7 +76,6 @@ Game.prototype.tick = function() {
         }
       });
   });
-
 
   setTimeout(function() { self.tick(); }, 30);
 }
