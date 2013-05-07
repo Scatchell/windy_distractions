@@ -2,7 +2,7 @@ DeathMachineUser = function(location, container){
   this.location = location;
   this.speed = 10;
   this.container = container;
-  this.path = [new Point(window.innerWidth, 0), new Point(window.innerWidth/2, window.innerHeight/2), new Point(window.innerWidth/2, window.innerHeight)];
+  this.path = [new Point(container.max_x, 0), new Point(container.max_x/2, container.max_y/2), new Point(container.max_x/2, container.max_y)];
   this.target = location;
 
   this.sprite = document.createElement("img");

@@ -1,7 +1,8 @@
 Game = function() {
-  var container = new Container(0,0,window.innerWidth,window.innerHeight);
+  var container_div = $("#container");  
+  var container = new Container(0,0,container_div.width(),container_div.height());
 
-  this.guy = new Guy(new Point(window.innerWidth/2, window.innerHeight), container);
+  this.guy = new Guy(new Point(container_div.width()/2, container_div.height()), container);
   this.upDown = false;
   this.downDown = false;
   this.leftDown = false;
@@ -11,10 +12,7 @@ Game = function() {
   this.guy.render();
   this.game_objects = [];
 
-  for(var i=0; i<1; i++) {
-    this.register(new DeathMachineUser(new Point(Math.floor(Math.random() * window.innerWidth),
-                                        Math.floor(Math.random() * window.innerHeight/2)), container));
-  }
+  this.register(new DeathMachineUser(new Point(0,0), container));
 }
 
 Game.prototype.setKeyEvents = function() {
