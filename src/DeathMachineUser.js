@@ -1,6 +1,6 @@
 DeathMachineUser = function(location, container){
   this.location = location;
-  this.speed = 10;
+  this.speed = 6;
   this.container = container;
   this.path = [new Point(container.max_x+50, 0), new Point(container.max_x/2, container.max_y/2), new Point(container.max_x/2, container.max_y+50)];
   this.target = location;
@@ -17,10 +17,13 @@ DeathMachineUser.prototype = new Renderable();
 DeathMachineUser.prototype.move = function() {
   if (this.distance_between_two_points(this.location, this.target) > this.speed){
     var scaler = this.obtain_scalar(this.location, this.target);
-    this.location.x += scaler * (this.target.x - this.location.x);
-    this.location.y += scaler * (this.target.y - this.location.y);
+    var x_distance = scaler * (this.target.x - this.location.x);
+    this.location = this.location.right_by(x_distance);
+    var y_distance = scaler * (this.target.y - this.location.y);
+    this.location = this.location.down_by(y_distance);
   } else {
     this.target = this.path.shift() || this.target;
+    //this.shootBullet();
   }
   this.container.checkBoundaries(this);
 }
@@ -34,7 +37,14 @@ DeathMachineUser.prototype.distance_between_two_points = function(point1, point2
 }
 
 DeathMachineUser.prototype.outOfBounds = function(overflows) {
- if (overflows.bottom > this.height()) {
+  if (overflows.bottom > this.height()) {
     game.deregister(this);
- }
+  }
+}
+
+DeathMachineUser.prototype.shootBullet = function() {
+  var bullet = new Bullet(this.location, this.container);
+  //change this
+  bullet.speed = -10;
+  game.register(bullet);
 }

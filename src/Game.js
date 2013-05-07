@@ -74,7 +74,7 @@ Game.prototype.tick = function() {
       });
   });
 
-  setTimeout(function() { self.tick(); }, 30);
+  setTimeout(function() { self.tick(); }, 15);
 }
 
 Game.prototype.deregister = function(game_object) {
