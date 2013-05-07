@@ -2,7 +2,7 @@ DeathMachineUser = function(location, container){
   this.location = location;
   this.speed = 6;
   this.container = container;
-  this.path = [new Point(container.max_x+50, 0), new Point(container.max_x/2, container.max_y/2), new Point(container.max_x/2, container.max_y+50)];
+  this.path = [new Point(container.max_x-50, 0), new Point(container.max_x/2, container.max_y/2), new Point(container.max_x/2, container.max_y+50)];
   this.target = location;
 
   this.sprite = document.createElement("img");
@@ -23,7 +23,7 @@ DeathMachineUser.prototype.move = function() {
     this.location = this.location.down_by(y_distance);
   } else {
     this.target = this.path.shift() || this.target;
-    //this.shootBullet();
+    this.shootBullet();
   }
   this.container.checkBoundaries(this);
 }
@@ -43,8 +43,7 @@ DeathMachineUser.prototype.outOfBounds = function(overflows) {
 }
 
 DeathMachineUser.prototype.shootBullet = function() {
-  var bullet = new Bullet(this.location, this.container);
-  //change this
+  var bullet = new Bullet(this.location.down_by(this.height()+10), this.container);
   bullet.speed = -10;
   game.register(bullet);
 }
