@@ -17,6 +17,14 @@ Renderable.prototype.right = function() {
   return this.location.x + this.sprite.width;
 }
 
+Renderable.prototype.height = function() {
+  return this.sprite.height;
+}
+
+Renderable.prototype.width = function() {
+  return this.sprite.width;
+}
+
 Renderable.prototype.render = function() {
   this.sprite.style.left = this.location.x + "px";
   this.sprite.style.top = this.location.y + "px";
@@ -34,4 +42,8 @@ Renderable.prototype.move = function() {
 Renderable.prototype.collided = function(other) {
   return !(this.bottom() < other.top() || other.bottom() < this.top() ||
             this.right() < other.left() || other.right() < this.left());
+}
+
+Renderable.prototype.outOfBounds = function(overflows) {
+  game.deregister(this);
 }

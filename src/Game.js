@@ -12,7 +12,7 @@ Game = function() {
   this.guy.render();
   this.game_objects = [];
 
-  this.register(new DeathMachineUser(new Point(0,0), container));
+  this.register(new DeathMachineUser(new Point(-50,0), container));
 }
 
 Game.prototype.setKeyEvents = function() {
