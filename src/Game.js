@@ -2,17 +2,16 @@ Game = function() {
   var container_div = $("#container");  
   var container = new Container(0,0,container_div.width(),container_div.height());
 
-  this.guy = new Guy(new Point(container_div.width()/2, container_div.height()), container);
   this.upDown = false;
   this.downDown = false;
   this.leftDown = false;
   this.rightDown = false;
 
   this.setKeyEvents();
-  this.guy.render();
   this.game_objects = [];
 
   this.register(new DeathMachineUser(new Point(-50,0), container));
+  this.register(new Guy(new Point(container_div.width()/2, container_div.height()), container));
 }
 
 Game.prototype.setKeyEvents = function() {
@@ -32,7 +31,7 @@ Game.prototype.setKeyEvents = function() {
       self.upDown = true;
       }
       if (event.which == 76){
-      self.guy.shootBullet();
+      self.LDown = true;
       }
       });
 
@@ -49,23 +48,24 @@ Game.prototype.setKeyEvents = function() {
       if (event.which == 38){
       self.upDown = false;
       }
+      if (event.which == 76){
+      self.LDown = false;
+      }
       });
 }
 
-Game.prototype.register = function(bullet) {
-  this.game_objects.push(bullet);
+Game.prototype.register = function(object) {
+  this.game_objects.push(object);
 }
 
 Game.prototype.tick = function() {
   var self = this;
-  this.guy.move(this.rightDown? 1 : 0, this.downDown? 1 : 0);
-  this.guy.move(this.leftDown? -1 : 0, this.upDown? -1 : 0);
-  this.guy.render();
 
   this.game_objects.forEach(function(game_object) {
-  
       game_object.tick();
+  });
 
+  this.game_objects.forEach(function(game_object) {
       self.game_objects.forEach(function(other) {
         if (game_object != other && game_object.collided(other)) {
           self.deregister(other);
