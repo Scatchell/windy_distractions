@@ -39,6 +39,10 @@ Renderable.prototype.move = function() {
   ;
 }
 
+Renderable.prototype.tick = function() {
+  this.move();
+}
+
 Renderable.prototype.collided = function(other) {
   return !(this.bottom() < other.top() || other.bottom() < this.top() ||
             this.right() < other.left() || other.right() < this.left());

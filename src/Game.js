@@ -63,8 +63,8 @@ Game.prototype.tick = function() {
   this.guy.render();
 
   this.game_objects.forEach(function(game_object) {
-      game_object.render();
-      game_object.move();
+  
+      game_object.tick();
 
       self.game_objects.forEach(function(other) {
         if (game_object != other && game_object.collided(other)) {
@@ -72,6 +72,10 @@ Game.prototype.tick = function() {
           self.deregister(game_object);
         }
       });
+  });
+
+  this.game_objects.forEach(function(game_object) {
+      game_object.render();
   });
 
   setTimeout(function() { self.tick(); }, 15);
