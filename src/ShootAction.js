@@ -1,8 +1,12 @@
-ShootAction = function() {
- ; 
+ShootAction = function(speed) {
+  this.speed = speed;
 }
 
 ShootAction.prototype.perform = function(deathMachineUser){
-  deathMachineUser.shootBullet();
+  var self = this;
+  deathMachineUser.shootBullet(function(bullet) {
+    bullet.speed = self.speed;
+    game.register(bullet);
+  });
   return true;
 }

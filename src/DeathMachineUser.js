@@ -2,10 +2,14 @@ DeathMachineUser = function(location, container){
   this.location = location;
   this.speed = 6;
   this.container = container;
-  this.path = [new MoveAction(new Point(container.max_x-50, 0), this.speed),
-               new ShootAction(),
+  this.path = [new MoveAction(new Point(container.max_x/2-50, 0), this.speed),
+               new ShootAction(-10),
+               new WaitAction(10),
+               new ShootAction(-10),
+               new MoveAction(new Point(container.max_x-50, 0), this.speed),
+               new ShootAction(-10),
                new MoveAction(new Point(container.max_x/2, container.max_y/2), this.speed),
-               new ShootAction(),
+               new ShootAction(-10),
                new MoveAction(new Point(container.max_x/2, container.max_y+50), this.speed)];
   this.current_action = this.path[0];
 
@@ -30,10 +34,9 @@ DeathMachineUser.prototype.tick = function() {
   }
 }
 
-DeathMachineUser.prototype.shootBullet = function() {
+DeathMachineUser.prototype.shootBullet = function(shoot) {
   var bullet = new Bullet(this.location.down_by(this.height()+10), this.container);
-  bullet.speed = -10;
-  game.register(bullet);
+  shoot(bullet);
 }
 
 DeathMachineUser.prototype.move = function(new_location) {
