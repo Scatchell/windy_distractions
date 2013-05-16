@@ -1,16 +1,22 @@
 DeathMachineUser = function(location, container){
   this.location = location;
   this.speed = 6;
+  this.shootSpeed = -10;
   this.container = container;
-  this.path = [new MoveAction(new Point(container.max_x/2-50, 0), this.speed),
-               new ShootAction(-10),
-               new WaitAction(10),
-               new ShootAction(-10),
-               new MoveAction(new Point(container.max_x-50, 0), this.speed),
-               new ShootAction(-10),
-               new MoveAction(new Point(container.max_x/2, container.max_y/2), this.speed),
-               new ShootAction(-10),
-               new MoveAction(new Point(container.max_x/2, container.max_y+50), this.speed)];
+  this.path = [
+              new MoveAction(new Point(container.max_x/4-50, 0), this.speed),
+              new ShootAction(this.shootSpeed),
+              new MoveAction(new Point(container.max_x/2-50, 0), this.speed),
+              new ShootAction(this.shootSpeed),
+              new WaitAction(10),
+              new ShootAction(this.shootSpeed),
+              new MoveAction(new Point(container.max_x/1.5-50, 0), this.speed),
+              new ShootAction(this.shootSpeed),
+              new MoveAction(new Point(container.max_x-50, 0), this.speed),
+              new ShootAction(this.shootSpeed),
+              new MoveAction(new Point(container.max_x/2, container.max_y/2), this.speed),
+              new ShootAction(this.shootSpeed),
+              new MoveAction(new Point(container.max_x/2, container.max_y+50), this.speed)];
   this.current_action = this.path[0];
 
   this.sprite = document.createElement("img");
