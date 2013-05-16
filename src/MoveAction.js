@@ -1,6 +1,6 @@
-MoveAction = function(target) {
+MoveAction = function(target, speed) {
+  this.speed = speed;
   this.target = target; 
-  this.speed = 6;
 }
 
 MoveAction.prototype.perform = function(DMU) {
