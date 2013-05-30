@@ -68,8 +68,7 @@ Game.prototype.tick = function() {
   this.game_objects.forEach(function(game_object) {
       self.game_objects.forEach(function(other) {
         if (game_object != other && game_object.collided(other)) {
-          self.deregister(other);
-          self.deregister(game_object);
+          collided(game_object, other);
         }
       });
   });
@@ -84,4 +83,9 @@ Game.prototype.tick = function() {
 Game.prototype.deregister = function(game_object) {
   game_object.remove();
   this.game_objects.splice(this.game_objects.indexOf(game_object), 1);
+}
+
+function collided(collider, collidee) {
+  collider.collided_with(collidee);
+  collidee.collided_with(collider);
 }

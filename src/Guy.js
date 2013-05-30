@@ -22,9 +22,9 @@ Guy.prototype.move = function(x, y) {
   this.container.checkBoundaries(this);
 }
 
-Guy.prototype.shootBullet = function() {
+Guy.prototype.shootBullet = function(shoot) {
   var bullet = new Bullet(this.location.up_by(11), this.container);
-  game.register(bullet);
+  shoot(bullet);
 }
 
 Guy.prototype.outOfBounds = function(overflows) {
@@ -39,8 +39,14 @@ Guy.prototype.tick = function() {
   this.move(game.leftDown? -1 : 0, game.upDown? -1 : 0);
 
   if (game.LDown && this.ticks_since_shot > this.bullet_cooldown) {
-    this.shootBullet();
+    new ShootAction(10).perform(this);
     this.ticks_since_shot = 0;
   }
   this.ticks_since_shot++;
+}
+
+Guy.prototype.collided_with = function(other) {
+  var sound = new Audio("assets/sounds/oh_come_on.ogg");
+  sound.play();
+  Renderable.prototype.collided_with.apply(this, other);
 }

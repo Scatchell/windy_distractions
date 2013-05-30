@@ -17,3 +17,11 @@ Bullet.prototype.move = function() {
 
   this.container.checkBoundaries(this);
 }
+
+Bullet.prototype.collided_with = function(other) {
+  if (other instanceof Bullet) {
+    var sound = new Audio("assets/sounds/bullet_collision.ogg");
+    sound.play();
+  }
+  Renderable.prototype.collided_with.apply(this, other);
+}

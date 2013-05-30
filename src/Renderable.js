@@ -51,3 +51,7 @@ Renderable.prototype.collided = function(other) {
 Renderable.prototype.outOfBounds = function(overflows) {
   game.deregister(this);
 }
+
+Renderable.prototype.collided_with = function(other) {
+  game.deregister(this);
+}

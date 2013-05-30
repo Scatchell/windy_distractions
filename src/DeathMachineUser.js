@@ -25,8 +25,8 @@ DeathMachineUser = function(location, container){
   this.sprite.height = 50;
   this.sprite.width = 50;
   
-  var entrySound = new Audio("assets/sounds/death_machine_user_enters.ogg");
-  entrySound.play();
+  this.entrySound = new Audio("assets/sounds/death_machine_user_enters.ogg");
+  this.entrySound.play();
 }
 
 DeathMachineUser.prototype = new Renderable();
@@ -34,6 +34,8 @@ DeathMachineUser.prototype = new Renderable();
 DeathMachineUser.prototype.outOfBounds = function(overflows) {
   if (overflows.bottom > this.height()) {
     game.deregister(this);
+    var winSound = new Audio("assets/sounds/you_idiot.ogg");
+    winSound.play();
   }
 }
 
@@ -51,4 +53,11 @@ DeathMachineUser.prototype.shootBullet = function(shoot) {
 DeathMachineUser.prototype.move = function(new_location) {
   this.location = new_location;
   this.container.checkBoundaries(this);
+}
+
+DeathMachineUser.prototype.collided_with = function(other) {
+  this.entrySound.pause();
+  var sound = new Audio("assets/sounds/no_you_have_defeated_me.ogg");
+  sound.play();
+  Renderable.prototype.collided_with.apply(this, other);
 }
