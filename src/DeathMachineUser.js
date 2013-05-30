@@ -24,6 +24,9 @@ DeathMachineUser = function(location, container){
   this.sprite.src = "assets/sprites/death_machine_user.png";
   this.sprite.height = 50;
   this.sprite.width = 50;
+  
+  var entrySound = new Audio("assets/sounds/death_machine_user_enters.ogg");
+  entrySound.play();
 }
 
 DeathMachineUser.prototype = new Renderable();

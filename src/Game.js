@@ -18,40 +18,40 @@ Game.prototype.setKeyEvents = function() {
   var self = this;
 
   $(document).keydown(function(event){
-      if (event.which == 39){
-      self.rightDown = true;
+      if (event.which == 39) {
+        self.rightDown = true;
       }
-      if (event.which == 40){
-      self.downDown = true;
+      if (event.which == 40) {
+        self.downDown = true;
       }	
-      if (event.which == 37){
-      self.leftDown = true;
+      if (event.which == 37) {
+        self.leftDown = true;
       }
-      if (event.which == 38){
-      self.upDown = true;
+      if (event.which == 38) {
+        self.upDown = true;
       }
-      if (event.which == 76){
-      self.LDown = true;
+      if (event.which == 76) {
+        self.LDown = true;
       }
-      });
+  });
 
   $(document).keyup(function(event){
-      if (event.which == 39){
-      self.rightDown = false;
+      if (event.which == 39) {
+        self.rightDown = false;
       }
-      if (event.which == 40){
-      self.downDown = false;
+      if (event.which == 40) {
+        self.downDown = false;
       }	
-      if (event.which == 37){
-      self.leftDown = false;
+      if (event.which == 37) {
+        self.leftDown = false;
       }
-      if (event.which == 38){
-      self.upDown = false;
+      if (event.which == 38) {
+        self.upDown = false;
       }
-      if (event.which == 76){
-      self.LDown = false;
+      if (event.which == 76) {
+        self.LDown = false;
       }
-      });
+  });
 }
 
 Game.prototype.register = function(object) {
