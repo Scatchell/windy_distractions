@@ -12,6 +12,9 @@ Game = function() {
 
   this.register(new DeathMachineUser(new Point(-50,0), container));
   this.register(new Guy(new Point(container_div.width()/2, container_div.height()), container));
+
+  this.gameMusic = new Audio("assets/music/pdream.mp3");
+  this.gameMusic.play();
 }
 
 Game.prototype.setKeyEvents = function() {

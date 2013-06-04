@@ -1,4 +1,5 @@
 DeathMachineUser = function(location, container){
+  Renderable.apply(this);
   this.location = location;
   this.speed = 6;
   this.shootSpeed = -10;
@@ -19,11 +20,9 @@ DeathMachineUser = function(location, container){
               new MoveAction(new Point(container.max_x/2, container.max_y+50), this.speed)];
   this.current_action = this.path[0];
 
-  this.sprite = document.createElement("img");
-  this.sprite.style.position = "absolute";
-  this.sprite.src = "assets/sprites/death_machine_user.png";
-  this.sprite.height = 50;
-  this.sprite.width = 50;
+  this.spriteLocation = "assets/sprites/death_machine_user.png";
+  this.height = 50;
+  this.width = 50;
   
   this.entrySound = new Audio("assets/sounds/death_machine_user_enters.ogg");
   this.entrySound.play();
@@ -32,7 +31,7 @@ DeathMachineUser = function(location, container){
 DeathMachineUser.prototype = new Renderable();
 
 DeathMachineUser.prototype.outOfBounds = function(overflows) {
-  if (overflows.bottom > this.height()) {
+  if (overflows.bottom > this.height) {
     game.deregister(this);
     var winSound = new Audio("assets/sounds/you_idiot.ogg");
     winSound.play();
@@ -46,7 +45,7 @@ DeathMachineUser.prototype.tick = function() {
 }
 
 DeathMachineUser.prototype.shootBullet = function(shoot) {
-  var bullet = new Bullet(this.location.down_by(this.height()+10), this.container);
+  var bullet = new Bullet(this.location.down_by(this.height+10), this.container);
   shoot(bullet);
 }
 

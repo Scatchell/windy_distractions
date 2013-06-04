@@ -1,4 +1,6 @@
 Renderable = function () {
+  this.sprite = document.createElement("img");
+  this.sprite.style.position = "absolute";
 }
 
 Renderable.prototype.top = function() {
@@ -17,17 +19,13 @@ Renderable.prototype.right = function() {
   return this.location.x + this.sprite.width;
 }
 
-Renderable.prototype.height = function() {
-  return this.sprite.height;
-}
-
-Renderable.prototype.width = function() {
-  return this.sprite.width;
-}
-
 Renderable.prototype.render = function() {
   this.sprite.style.left = this.location.x + "px";
   this.sprite.style.top = this.location.y + "px";
+  this.sprite.src = this.spriteLocation;
+  this.sprite.height = this.height;
+  this.sprite.width = this.width;
+
   $("#container").append(this.sprite);
 }
 

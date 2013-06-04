@@ -1,14 +1,13 @@
 Guy = function(location, container) {
+  Renderable.apply(this);
   this.location = location;
   this.speed = 8;
   this.bullet_cooldown = 20;
   this.ticks_since_shot = 0;
 
-  this.sprite = document.createElement("img");
-  this.sprite.style.position = "absolute";
-  this.sprite.src = "assets/sprites/guy.png";
-  this.sprite.height = 50;
-  this.sprite.width = 25;
+  this.spriteLocation = "assets/sprites/guy.png";
+  this.height = 50;
+  this.width = 25;
 
   this.container = container;
 }

@@ -3,11 +3,11 @@ Bullet = function(location, container) {
   this.container = container;
   this.speed = 10;
 
-  this.sprite = document.createElement("img");
-  this.sprite.style.position = "absolute";
-  this.sprite.src = "assets/sprites/bullet.png";
-  this.sprite.height = 10;
-  this.sprite.width = 5;
+  this.spriteLocation = "assets/sprites/bullet.png";
+  this.height = 10;
+  this.width = 5;
+
+  Renderable.apply(this);
 }
 
 Bullet.prototype = new Renderable();
