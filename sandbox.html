@@ -1,0 +1,98 @@
+<style>
+.pieContainer {
+
+height: 100px;
+}
+.pieBackground {
+
+  background-color: black;
+position: absolute;
+width: 100px;
+height: 100px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -o-border-radius: 50px;
+        border-radius: 50px;
+        -moz-box-shadow: -1px 1px 3px #000;
+        -webkit-box-shadow: -1px 1px 3px #000;
+        -o-box-shadow: -1px 1px 3px #000;
+        box-shadow: -1px 1px 3px #000;
+} 
+.pie {
+position: absolute;
+width: 100px;
+height: 100px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -o-border-radius: 50px;
+        border-radius: 50px;
+clip: rect(0px, 50px, 100px, 0px);
+}
+
+.hold {
+position: absolute;
+width: 100px;
+height: 100px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -o-border-radius: 50px;
+        border-radius: 50px;
+clip: rect(0px, 100px, 100px, 50px);
+}
+
+#pieSliceBlue2 {
+
+  -webkit-transform:rotate(45deg);
+  -moz-transform:rotate(45deg);
+  -o-transform:rotate(45deg);
+transform:rotate(45deg);
+}
+#pieSliceBlue2 .pie {
+
+  background-color: #1b458b;
+  -webkit-transform:rotate(40deg);
+  -moz-transform:rotate(40deg);
+  -o-transform:rotate(40deg);
+transform:rotate(40deg);
+}
+#pieSliceRed {
+
+  -webkit-transform:rotate(0deg);
+  -moz-transform:rotate(0deg);
+  -o-transform:rotate(0deg);
+transform:rotate(0deg);
+}
+#pieSliceRed .pie {
+
+  background-color: #cc0000;
+  -webkit-transform:rotate(40deg);
+  -moz-transform:rotate(40deg);
+  -o-transform:rotate(40deg);
+transform:rotate(40deg);
+}
+</style>
+<div id="container" class="pieContainer">
+     <div class="pieBackground"></div>
+          <div id="pieSliceBlue2" class="hold"><div class="pie"></div></div>
+          <div id="pieSliceRed" class="hold"><div class="pie"></div></div>
+          </div>
+
+<script type = "text/javascript">
+var lifeSlicePosition = document.createElement("div");
+lifeSlicePosition.className = "hold";
+var lifeSliceSize = document.createElement("div");
+lifeSliceSize.className = "pie";
+lifeSlicePosition.appendChild(lifeSliceSize);
+var pieContainer = document.getElementById("container");
+pieContainer.appendChild(lifeSlicePosition);
+lifeSlicePosition.style["-webkit-transform"] = "rotate(180deg)";
+lifeSlicePosition.style["-moz-transform"] = "rotate(180deg)";
+lifeSlicePosition.style["-o-transform"] = "rotate(180deg)";
+lifeSlicePosition.style["transform"] = "rotate(180deg)";
+lifeSliceSize.style["background-color"] = "white";
+lifeSliceSize.style["-webkit-transform"] = "rotate(40deg)";
+lifeSliceSize.style["-moz-transform"] = "rotate(40deg)";
+lifeSliceSize.style["-o-transform"] = "rotate(40deg)";
+lifeSliceSize.style["transform"] = "rotate(40deg)";
+
+</script>
