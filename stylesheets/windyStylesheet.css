@@ -1,0 +1,26 @@
+#container {
+  margin: 50px 0 0 50px;
+  vertical-align: bottom;
+  text-align: center;
+}
+
+#gameplayArea {
+  background: darkgray;
+  position: relative;
+  height: 600px;
+  width: 800px;
+  border: solid red 1px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+h2 {
+  margin: auto;
+  width: 200px;
+  color: green;
+}
+
+#healthgraph {
+  width:100px; 
+  display: inline-block;
+}

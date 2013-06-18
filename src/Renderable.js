@@ -26,7 +26,7 @@ Renderable.prototype.render = function() {
   this.sprite.height = this.height;
   this.sprite.width = this.width;
 
-  $("#container").append(this.sprite);
+  $("#gameplayArea").append(this.sprite);
 }
 
 Renderable.prototype.remove = function() {

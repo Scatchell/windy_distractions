@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>Windy Distractions</title>
+    <link rel="stylesheet" href="stylesheets/windyStylesheet.css" type="text/css" />
+    <link rel="stylesheet" href="stylesheets/healthgraph.css" type="text/css" />
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="src/Renderable.js"></script>
     <script src="src/Guy.js"></script>
@@ -15,9 +18,14 @@
     <script src="src/ShootAction.js"></script>
     <script src="src/WaitAction.js"></script>
   </head>
+
   <body onload="init()" style="background: black">
-    <div id="container" style="background: darkgray; position: relative; top: 50px; left: 50px; height: 600px; width: 800px; border: solid red 1px; overflow: hidden">
-	<h2 style="margin: auto; width: 200px;">Windy Distractions</h2>
-    </div> 
+    <div id="container">
+      <h2>Windy Distractions</h2>
+      <div id="gameplayArea"></div>
+      <div id="healthgraph" class="pieContainer">
+        <div class="pieBackground"></div>
+      </div>
+    </div>
   </body>
 </html>

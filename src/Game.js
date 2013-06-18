@@ -1,5 +1,5 @@
 Game = function() {
-  var container_div = $("#container");  
+  var container_div = $("#gameplayArea");
   var container = new Container(0,0,container_div.width(),container_div.height());
 
   this.upDown = false;
