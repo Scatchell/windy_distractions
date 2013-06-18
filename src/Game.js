@@ -15,6 +15,35 @@ Game = function() {
 
   this.gameMusic = new Audio("assets/music/pdream.mp3");
   this.gameMusic.play();
+
+  this.healthGraph = $("#healthgraph");
+  this.createHealthMeter();
+  this.addLifeSlice(0);
+  this.addLifeSlice(45);
+}
+
+Game.prototype.createHealthMeter = function() {
+  this.healthMeter = document.createElement("div");
+  this.healthMeter.className = 'pieBackground';
+  this.healthGraph.append(this.healthMeter);
+}
+
+Game.prototype.addLifeSlice = function(start) {
+  var lifeSlicePosition = document.createElement("div");
+  lifeSlicePosition.className = "hold";
+  var lifeSliceSize = document.createElement("div");
+  lifeSliceSize.className = "pie";
+
+  lifeSlicePosition.appendChild(lifeSliceSize);
+  this.healthGraph.append(lifeSlicePosition);
+
+  var browserPrefixes = ["-webkit-", "-moz-", "-o-", ""];
+
+  browserPrefixes.forEach(function(prefix) {
+      lifeSlicePosition.style[prefix + "transform"] = "rotate("+start+"deg)";
+      lifeSliceSize.style[prefix + "transform"] = "rotate("+40+"deg)";
+      });
+  lifeSliceSize.style["background-color"] = "white";
 }
 
 Game.prototype.setKeyEvents = function() {
