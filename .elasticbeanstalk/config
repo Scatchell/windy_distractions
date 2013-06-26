@@ -1,0 +1,5 @@
+[global]
+ApplicationName=nodejsTest
+DevToolsEndpoint=git.elasticbeanstalk.us-west-1.amazonaws.com
+EnvironmentName=nodejsTest-env
+Region=us-west-1
