@@ -89,8 +89,11 @@ Game.prototype.tick = function() {
 }
 
 Game.prototype.deregister = function(game_object) {
-  game_object.remove();
-  this.game_objects.splice(this.game_objects.indexOf(game_object), 1);
+  var index = this.game_objects.indexOf(game_object);
+  if (index < 0) {
+    throw "¡Game object not registered!";
+  }
+  this.game_objects.splice(index, 1);
 }
 
 function collided(collider, collidee) {

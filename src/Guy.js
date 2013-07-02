@@ -1,6 +1,6 @@
 Guy = function(location, container) {
   Renderable.apply(this);
-  this.health = 8;
+  this.health = 4;
   this.location = location;
   this.speed = 8;
   this.bullet_cooldown = 20;
@@ -52,4 +52,8 @@ Guy.prototype.collided_with = function(other) {
   if (this.health == 0) {
     this.die();
   }
+}
+
+Guy.prototype.remove = function() {
+  this.explode();
 }

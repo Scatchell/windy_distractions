@@ -32,9 +32,9 @@ DeathMachineUser.prototype = new Renderable();
 
 DeathMachineUser.prototype.outOfBounds = function(overflows) {
   if (overflows.bottom > this.height) {
-    game.deregister(this);
     var winSound = new Audio("assets/sounds/you_idiot.ogg");
     winSound.play();
+    this.die();
   }
 }
 
@@ -58,5 +58,5 @@ DeathMachineUser.prototype.collided_with = function(other) {
   this.entrySound.pause();
   var sound = new Audio("assets/sounds/no_you_have_defeated_me.ogg");
   sound.play();
-  Renderable.prototype.collided_with.apply(this, other);
+  this.die();
 }

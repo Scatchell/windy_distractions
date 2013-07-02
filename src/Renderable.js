@@ -29,10 +29,6 @@ Renderable.prototype.render = function() {
   $("#gameplayArea").append(this.sprite);
 }
 
-Renderable.prototype.remove = function() {
-  $(this.sprite).remove();
-}
-
 Renderable.prototype.move = function() {
   ;
 }
@@ -54,6 +50,17 @@ Renderable.prototype.collided_with = function(other) {
   this.die();
 }
 
+Renderable.prototype.explode = function() {
+  var self = this;
+  var callback = function() { $(self.sprite).remove();};
+  $(this.sprite).hide("explode", {pieces: 50}, 700, callback);
+}
+
+Renderable.prototype.remove = function() {
+  $(this.sprite).remove();
+}
+
 Renderable.prototype.die = function() {
+  this.remove();
   game.deregister(this);
 }
