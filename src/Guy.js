@@ -1,5 +1,6 @@
 Guy = function(location, container) {
   Renderable.apply(this);
+  this.health = 8;
   this.location = location;
   this.speed = 8;
   this.bullet_cooldown = 20;
@@ -47,5 +48,8 @@ Guy.prototype.tick = function() {
 Guy.prototype.collided_with = function(other) {
   var sound = new Audio("assets/sounds/oh_come_on.ogg");
   sound.play();
-  Renderable.prototype.collided_with.apply(this, other);
+  this.health--;
+  if (this.health == 0) {
+    this.die();
+  }
 }

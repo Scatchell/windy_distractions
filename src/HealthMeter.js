@@ -31,7 +31,13 @@ HealthMeter.prototype.createSlice = function(sliceNumber) {
 }
 
 HealthMeter.prototype.updateHealth = function() {
-  //lifeSliceSize.style["display"] = "none";
+  for (var i = 0; i<8; i++) {
+    if (this.guy.health > i) {
+      this.slices[i].style.visibility = "visible";
+    } else {
+      this.slices[i].style.visibility = "hidden";
+    }
+  }
 }
 
 HealthMeter.prototype.rotate = function(element, angle) {
