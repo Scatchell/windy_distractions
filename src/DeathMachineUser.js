@@ -35,6 +35,8 @@ DeathMachineUser.prototype.outOfBounds = function(overflows) {
     var winSound = new Audio("assets/sounds/you_idiot.ogg");
     winSound.play();
     this.die();
+
+    windyPipeline.publish("out_of_bounds");
   }
 }
 

@@ -11,6 +11,11 @@ Guy = function(location, container) {
   this.width = 25;
 
   this.container = container;
+
+  self = this;
+  windyPipeline.subscribe("out_of_bounds", function(){
+    self.health--;
+  });
 }
 
 Guy.prototype = new Renderable();

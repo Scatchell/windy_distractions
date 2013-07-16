@@ -19,6 +19,8 @@ Game = function() {
   this.gameMusic.play();
 }
 
+var windyPipeline = new WindyPipeline();
+
 Game.prototype.setKeyEvents = function() {
   var self = this;
 
