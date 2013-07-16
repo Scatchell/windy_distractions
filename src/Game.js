@@ -35,7 +35,7 @@ Game.prototype.setKeyEvents = function() {
       if (event.which == 38) {
         self.upDown = true;
       }
-      if (event.which == 76) {
+      if (event.which == 32) {
         self.LDown = true;
       }
   });
@@ -53,7 +53,7 @@ Game.prototype.setKeyEvents = function() {
       if (event.which == 38) {
         self.upDown = false;
       }
-      if (event.which == 76) {
+      if (event.which == 32) {
         self.LDown = false;
       }
   });
