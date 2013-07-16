@@ -26,7 +26,7 @@ HealthMeter.prototype.createSlice = function(sliceNumber) {
   this.rotate(lifeSlicePosition, (this.sliceSize + this.sliceSeparation) * sliceNumber); 
   this.rotate(lifeSliceSize, this.sliceSize);
 
-  lifeSliceSize.style["background-color"] = "white";
+  lifeSliceSize.style["background"] = "white";
   return lifeSlicePosition;
 }
 
