@@ -14,7 +14,7 @@ Guy = function(location, container) {
 
   self = this;
   windyPipeline.subscribe("out_of_bounds", function(){
-    self.health--;
+    self.decreaseHealth();
   });
 }
 
@@ -53,6 +53,10 @@ Guy.prototype.tick = function() {
 Guy.prototype.collided_with = function(other) {
   var sound = new Audio("assets/sounds/oh_come_on.ogg");
   sound.play();
+  this.decreaseHealth();
+}
+
+Guy.prototype.decreaseHealth = function() {
   this.health--;
   if (this.health == 0) {
     this.die();
