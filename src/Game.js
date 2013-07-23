@@ -11,6 +11,7 @@ Game = function() {
   this.game_objects = [];
 
   this.register(new DeathMachineUser(new Point(-50,0), container));
+  this.register(new Cloud(new Point(50, 0), container));
   var guy = new Guy(new Point(container_div.width()/2, container_div.height()), container);
   this.healthMeter = new HealthMeter(guy);
   this.register(guy);

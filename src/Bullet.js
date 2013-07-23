@@ -1,13 +1,14 @@
 Bullet = function(location, container) {
+  Renderable.apply(this);
   this.location = location; 
   this.container = container;
   this.speed = 10;
+  this.health = 1;
+  this.damage = 1;
 
   this.spriteLocation = "assets/sprites/bullet.png";
   this.height = 10;
   this.width = 5;
-
-  Renderable.apply(this);
 }
 
 Bullet.prototype = new Renderable();
@@ -23,5 +24,12 @@ Bullet.prototype.collided_with = function(other) {
     var sound = new Audio("assets/sounds/bullet_collision.ogg");
     sound.play();
   }
-  Renderable.prototype.collided_with.apply(this, other);
+  this.decreaseHealth(other.damage);
+}
+
+Bullet.prototype.decreaseHealth = function(damage) {
+  this.health -= damage;
+  if (this.health <= 0) {
+    this.die();
+  }
 }

@@ -1,6 +1,7 @@
 Guy = function(location, container) {
   Renderable.apply(this);
   this.health = 4;
+  this.damage = 1;
   this.location = location;
   this.speed = 8;
   this.bullet_cooldown = 20;
@@ -14,7 +15,7 @@ Guy = function(location, container) {
 
   self = this;
   windyPipeline.subscribe("out_of_bounds", function(){
-    self.decreaseHealth();
+    self.decreaseHealth(1);
   });
 }
 
@@ -51,18 +52,20 @@ Guy.prototype.tick = function() {
 }
 
 Guy.prototype.collided_with = function(other) {
-  var sound = new Audio("assets/sounds/oh_come_on.ogg");
-  sound.play();
-  this.decreaseHealth();
+  this.decreaseHealth(other.damage);
 }
 
-Guy.prototype.decreaseHealth = function() {
-  this.health--;
-  if (this.health == 0) {
+Guy.prototype.decreaseHealth = function(damage) {
+  if (damage > 0) {
+    var sound = new Audio("assets/sounds/oh_come_on.ogg");
+    sound.play();
+  }
+  this.health -= damage;
+  if (this.health <= 0) {
     this.die();
   }
 }
 
-Guy.prototype.remove = function() {
+Guy.prototype.prepareToDie = function() {
   this.explode();
 }

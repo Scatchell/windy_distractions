@@ -1,5 +1,7 @@
 DeathMachineUser = function(location, container){
   Renderable.apply(this);
+  this.health = 1;
+  this.damage = 1;
   this.location = location;
   this.speed = 6;
   this.shootSpeed = -10;
@@ -57,8 +59,18 @@ DeathMachineUser.prototype.move = function(new_location) {
 }
 
 DeathMachineUser.prototype.collided_with = function(other) {
+  this.decreaseHealth(other.damage);
+}
+
+DeathMachineUser.prototype.prepareToDie = function() {
   this.entrySound.pause();
   var sound = new Audio("assets/sounds/no_you_have_defeated_me.ogg");
   sound.play();
-  this.die();
+}
+
+DeathMachineUser.prototype.decreaseHealth = function(damage) {
+  this.health -= damage;
+  if (this.health <= 0) {
+    this.die();
+  }
 }

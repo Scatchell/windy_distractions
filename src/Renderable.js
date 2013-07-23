@@ -1,6 +1,7 @@
 Renderable = function () {
   this.sprite = document.createElement("img");
   this.sprite.style.position = "absolute";
+  this.damage = 0;
 }
 
 Renderable.prototype.top = function() {
@@ -47,7 +48,7 @@ Renderable.prototype.outOfBounds = function(overflows) {
 }
 
 Renderable.prototype.collided_with = function(other) {
-  this.die();
+  ;
 }
 
 Renderable.prototype.explode = function() {
@@ -61,6 +62,11 @@ Renderable.prototype.remove = function() {
 }
 
 Renderable.prototype.die = function() {
+  this.prepareToDie();
   this.remove();
   game.deregister(this);
+}
+
+Renderable.prototype.prepareToDie = function() {
+  ;
 }
