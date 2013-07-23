@@ -69,8 +69,11 @@ DeathMachineUser.prototype.prepareToDie = function() {
 }
 
 DeathMachineUser.prototype.decreaseHealth = function(damage) {
-  this.health -= damage;
-  if (this.health <= 0) {
-    this.die();
+  if (damage > 0) {
+    this.health -= damage;
+    if (this.health <= 0) {
+      this.die();
+    }
   }
 }
+

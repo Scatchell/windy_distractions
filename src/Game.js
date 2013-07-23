@@ -11,7 +11,14 @@ Game = function() {
   this.game_objects = [];
 
   this.register(new DeathMachineUser(new Point(-50,0), container));
-  this.register(new Cloud(new Point(50, 0), container));
+
+  var self = this;
+  function spawnTheCloud() {
+      self.register(new Cloud(new Point(Math.random()*container_div.width() - 100, -250), container));
+      setTimeout(spawnTheCloud, 3000);
+  }
+  spawnTheCloud();
+
   var guy = new Guy(new Point(container_div.width()/2, container_div.height()), container);
   this.healthMeter = new HealthMeter(guy);
   this.register(guy);
