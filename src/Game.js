@@ -14,13 +14,8 @@ Game = function() {
     this.register(new DeathMachineUser(new Point(-50 - (i * 50),0), container));
   }
 
-  var self = this;
-  function spawnTheCloud() {
-      self.register(new Cloud(new Point(Math.random()*container_div.width() - 100, -250), container));
-      setTimeout(spawnTheCloud, 3000);
-  }
-  spawnTheCloud();
-
+  this.environment = new Environment(this, container);
+  
   var guy = new Guy(new Point(container_div.width()/2, container_div.height()), container);
   this.healthMeter = new HealthMeter(guy);
   this.register(guy);
@@ -98,6 +93,8 @@ Game.prototype.tick = function() {
   });
 
   setTimeout(function() { self.tick(); }, 15);
+
+  this.environment.tick();
 }
 
 Game.prototype.deregister = function(game_object) {

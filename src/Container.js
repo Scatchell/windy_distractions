@@ -18,6 +18,10 @@ Container.prototype.checkBoundaries = function(object) {
   }
 }
 
+Container.prototype.width = function() {
+  return this.max_x - this.min_x;
+}
+
 
 function sumOfValues(object) {
   var sum = 0;
@@ -26,3 +30,4 @@ function sumOfValues(object) {
   }
   return sum;
 }
+
