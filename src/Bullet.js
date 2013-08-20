@@ -1,10 +1,12 @@
-Bullet = function(location, container) {
+Bullet = function(properties) {
   Renderable.apply(this);
-  this.location = location; 
-  this.container = container;
+  this.location = properties.location; 
+  this.container = properties.container;
   this.speed = 10;
   this.health = 1;
   this.damage = 1;
+  this.isNice = properties.isNice
+  this.isBad = properties.isBad
 
   this.spriteLocation = "assets/sprites/bullet.png";
   this.height = 10;

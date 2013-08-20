@@ -6,6 +6,8 @@ Guy = function(location, container) {
   this.speed = 8;
   this.bullet_cooldown = 20;
   this.ticks_since_shot = 0;
+  this.isNice = true;
+  this.isBad = false;
 
   this.spriteLocation = "assets/sprites/guy.png";
   this.height = 50;
@@ -29,7 +31,12 @@ Guy.prototype.move = function(x, y) {
 }
 
 Guy.prototype.shootBullet = function(shoot) {
-  var bullet = new Bullet(this.location.up_by(11), this.container);
+  var bullet = new Bullet({
+    location: this.location.up_by(11),
+    container: this.container,
+    isNice: this.isNice,
+    isBad: this.isBad
+  });
   shoot(bullet);
 }
 

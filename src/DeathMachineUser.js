@@ -6,6 +6,8 @@ DeathMachineUser = function(location, container){
   this.speed = 6;
   this.shootSpeed = -10;
   this.container = container;
+  this.isNice = false;
+  this.isBad = true;
   this.path = [
               new MoveAction(new Point(container.max_x/4-50, 0), this.speed),
               new ShootAction(this.shootSpeed),
@@ -49,7 +51,12 @@ DeathMachineUser.prototype.tick = function() {
 }
 
 DeathMachineUser.prototype.shootBullet = function(shoot) {
-  var bullet = new Bullet(this.location.down_by(this.height+10), this.container);
+  var bullet = new Bullet({
+    location: this.location.down_by(this.height+10),
+    container: this.container,
+    isNice: this.isNice,
+    isBad: this.isBad
+  });
   shoot(bullet);
 }
 
@@ -59,7 +66,9 @@ DeathMachineUser.prototype.move = function(new_location) {
 }
 
 DeathMachineUser.prototype.collided_with = function(other) {
-  this.decreaseHealth(other.damage);
+  if (other.isNice) {
+    this.decreaseHealth(other.damage);
+  }
 }
 
 DeathMachineUser.prototype.prepareToDie = function() {

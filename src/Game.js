@@ -10,7 +10,9 @@ Game = function() {
   this.setKeyEvents();
   this.game_objects = [];
 
-  this.register(new DeathMachineUser(new Point(-50,0), container));
+  for (var i = 0; i < 10; i++) {
+    this.register(new DeathMachineUser(new Point(-50 - (i * 50),0), container));
+  }
 
   var self = this;
   function spawnTheCloud() {
@@ -100,10 +102,9 @@ Game.prototype.tick = function() {
 
 Game.prototype.deregister = function(game_object) {
   var index = this.game_objects.indexOf(game_object);
-  if (index < 0) {
-    throw "¡Game object not registered!";
+  if (index >= 0) {
+    this.game_objects.splice(index, 1);
   }
-  this.game_objects.splice(index, 1);
 }
 
 function collided(collider, collidee) {
